@@ -16,7 +16,8 @@ def index():
     if not 'username' in session:
         return redirect(url_for('login'))
 
-    response = ''
+    rm = ''
+    rb = ''
     if request.method == 'POST':
         mobile = request.form.get('mobile', '').replace(' ', '').replace('.', '').strip()
         if mobile:
@@ -26,7 +27,7 @@ def index():
             response, err = p.communicate()
             rm = '\n'.join(str(i) for i in response.splitlines())
 
-            p = subprocess.Popen(['./mobile.sh', mobile], stdout=subprocess.PIPE)
+            p = subprocess.Popen(['./blacklist.sh', mobile], stdout=subprocess.PIPE)
             response, err = p.communicate()
             rb = '\n'.join(str(i) for i in response.splitlines())
 
