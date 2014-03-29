@@ -21,7 +21,7 @@ def index():
     useragent = ''
     if request.method == 'POST':
         mobile = request.form.get('mobile', '').replace(' ', '').replace('.', '').strip()
-        ip = request.form.get('ip', '').replace(' ', '').replace('.', '').strip()
+        ip = request.form.get('ip', '').replace(' ', '').strip()
         if mobile:
             if not mobile.startswith('+34'):
                 mobile = '+34' + mobile
