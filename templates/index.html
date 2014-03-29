@@ -10,20 +10,13 @@
             <legend>Mobile</legend>
             <form method="POST" action="" role="form" class="form">
                 <input type="text" name="mobile" class="form-control" placeholder="mobile"/>
+                <input type="text" name="ip" class="form-control" placeholder="ip"/>
                 <input type="submit" class="btn btn-primary" value="Send"/>
             </form>
         </fieldset>
 
-        <pre>
-        {% autoescape false %}
-{{ rm }}
-        {% endautoescape %}
-        </pre>
-
-        <pre>
-        {% autoescape false %}
-{{ rb }}
-        {% endautoescape %}
-        </pre>
+        <pre>{% autoescape false %}{{ useragent }}{% endautoescape %}</pre>
+        <pre>{% autoescape false %}{{ rm }}{% endautoescape %}</pre>
+        <pre>{% autoescape false %}{{ rb }}{% endautoescape %}</pre>
     </div>
 {% endblock %}

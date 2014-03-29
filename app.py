@@ -18,8 +18,10 @@ def index():
 
     rm = ''
     rb = ''
+    useragent = ''
     if request.method == 'POST':
         mobile = request.form.get('mobile', '').replace(' ', '').replace('.', '').strip()
+        ip = request.form.get('ip', '').replace(' ', '').replace('.', '').strip()
         if mobile:
             if not mobile.startswith('+34'):
                 mobile = '+34' + mobile
@@ -31,9 +33,12 @@ def index():
             response, err = p.communicate()
             rb = '\n'.join(str(i) for i in response.splitlines())
 
+        if ip:
+            p = subprocess.Popen(['./useragent.sh', ip], stdout=subprocess.PIPE)
+            response, err = p.communicate()
+            useragent = '\n'.join(str(i) for i in response.splitlines())
 
-
-    return render_template('index.html', rm=rm, rb=rb)
+    return render_template('index.html', rm=rm, rb=rb, useragent=useragent)
 
 
 @app.route('/login', methods=['GET', 'POST'])
